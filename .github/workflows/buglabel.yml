@@ -21,24 +21,24 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
           
-  steps:
-  # Runs a single command using the runners shell
-   - uses: actions/checkout@v4
+    steps:
+    # Runs a single command using the runners shell
+    - uses: actions/checkout@v4
 
-   - name: Use Node.js
-     uses: actions/setup-node@v4
-     with:
-      node-version: 18
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
 
-   - name: check issue title
-     env:
-      ISSUE_TITLE: ${{ toJson(github.event.issue.title) }}
-     if: contains(github.event.issue.title, 'bug') || contains(github.event.issue_comment, 'bug')
-     run : | 
-      echo "$ISSUE_TITLE - it's a bug!, Let's put 'bug' label"
-  
-   - name : put label
-     uses : ./
-     with: 
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      issue_number: ${{ github.event.issue.number }}
+    - name: check issue title
+      env:
+        ISSUE_TITLE: ${{ toJson(github.event.issue.title) }}
+      if: contains(github.event.issue.title, 'bug') || contains(github.event.issue_comment, 'bug')
+      run : | 
+        echo "$ISSUE_TITLE - it's a bug!, Let's put 'bug' label"
+    
+    - name : put label
+      uses : ./
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        issue_number: ${{ github.event.issue.number }}
