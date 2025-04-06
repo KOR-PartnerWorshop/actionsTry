@@ -30,8 +30,11 @@ jobs:
       with:
         node-version: 18
     
-    - name: Install dependencies
-      run: npm install
+    - name: Init & Install dependencies
+      run: | 
+       npm init -y
+       npm install @octokit/rest
+       npm install @actions/core
 
     - name: check issue title
       env:
