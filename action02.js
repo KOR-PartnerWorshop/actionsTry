@@ -1,5 +1,7 @@
 const { Octokit } = require("@octokit/rest");
 const core = require('@actions/core');
+const token = core.getInput('github_token');
+const issueNumber = core.getInput('issue_number');
 
 const octokit = new Octokit({
     auth: core.getInput('github_token'),
